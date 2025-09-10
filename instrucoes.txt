@@ -1,0 +1,39 @@
+Entrega 1:
+
+* Notebook com EDA, PCA, KMeans/DBSCAN, detecção de outliers (IQR + IsolationForest) e 5 modelos de regressão (Linear, Ridge, RandomForest, GradientBoosting, KNN) com Pipeline, validação e comparação de métricas.
+
+* Salva o melhor modelo em models/best_model.pkl, exporta artifacts/metrics.csv e artifacts/predicoes_completas.csv.
+
+* Se o data/crop_yield.csv oficial não estiver presente, o notebook gera um dataset sintético compatível para você testar o fluxo end-to-end.
+
+Como usar:
+
+Descompacte.
+
+Se tiver o arquivo oficial crop_yield.csv, coloque-o em data/.
+
+Abra notebooks/FarmTech_Entrega1.ipynb e rode as células na ordem.
+
+Veja os resultados em artifacts/ e o modelo final em models/.
+
+--------------------------------------------------
+
+Entrega 2:
+
+* Carrega automaticamente `models/best_model.pkl` (se você copiar da Entrega 1).
+* Se não existir, treina sozinho com `data/crop_yield.csv` (se houver).
+* Se nada existir, **gera um dataset sintético** e treina, garantindo que a API funcione end-to-end.
+
+Arquivos incluídos: `app/main.py`, `app/model.py`, `app/schemas.py`, `requirements.txt`, `Dockerfile`, `README.md`, `sample_request.json`, `tests/test_api.py`.
+
+
+Como rodar:
+
+1. `pip install -r requirements.txt`
+2. (opcional) coloque `models/best_model.pkl` ou `data/crop_yield.csv`
+3. `uvicorn app.main:app --reload`
+4. Teste em `http://127.0.0.1:8000/docs` ou com:
+
+```bash
+curl -X POST http://127.0.0.1:8000/predict -H "Content-Type: application/json" -d @sample_request.json
+```
